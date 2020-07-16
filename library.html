@@ -1,5 +1,41 @@
 <html>
     <head>
-        <script src="book.js"></script>
+        <title>Something goes here</title>
+        <script src="book.js" defer></script>
+        <link rel="stylesheet" type="text/css" href="bookcase.css">
     </head>
+    <body>
+        <div id="main-container">
+            <div id="bookcase"></div>
+            <div class="modal" id="modal">
+                <div class="modal-header" id="modal-header">
+                    <div class="title">Example Text</div>
+                    <button data-close-button class="close-button" id="close-button">&times;</button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <form id="book-info">
+                        <label for="book-title">Enter the title of your book:</label>
+                        <input type="text" id="book-title" placeholder="Book Title">
+                        <br><br>
+                        <label for="book-author">Enter the author of your book:</label>
+                        <input type="text" id="book-author" placeholder="Author">
+                        <br><br>
+                        <label for="book-length">Enter the page count of your book:</label>
+                        <input type="number" id="book-length" placeholder="Page Length">
+                        <br><br>
+                        <label for="yes-btn">
+                            <input type="radio" name="have-read" id="yes-btn" value="t">Yes
+                        </label>
+                        <label for="no-btn">
+                            <input type="radio" name="have-read" id="no-btn" value="f">No
+                        </label>
+                        <br><br>
+                        <button type="submit" id="book-submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <button data-modal-target="#modal" id="add-book">Add Book</button>
+            <div class="overlay" id="overlay"></div>
+        </div>
+    </body>
 </html>
