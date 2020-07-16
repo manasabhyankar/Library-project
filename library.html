@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Something goes here</title>
+        <title>My Library</title>
         <script src="book.js" defer></script>
         <link rel="stylesheet" type="text/css" href="bookcase.css">
     </head>
@@ -13,7 +13,6 @@
                     <button data-close-button class="close-button" id="close-button">&times;</button>
                 </div>
                 <div class="modal-body" id="modal-body">
-                    <form id="book-info">
                         <label for="book-title">Enter the title of your book:</label>
                         <input type="text" id="book-title" placeholder="Book Title">
                         <br><br>
@@ -23,15 +22,11 @@
                         <label for="book-length">Enter the page count of your book:</label>
                         <input type="number" id="book-length" placeholder="Page Length">
                         <br><br>
-                        <label for="yes-btn">
-                            <input type="radio" name="have-read" id="yes-btn" value="t">Yes
-                        </label>
-                        <label for="no-btn">
-                            <input type="radio" name="have-read" id="no-btn" value="f">No
+                        <label for="yes-btn">Already read the book?
+                            <input type="checkbox" name="have-read" id="yes-btn" value="t">
                         </label>
                         <br><br>
-                        <button type="submit" id="book-submit">Submit</button>
-                    </form>
+                        <button id="book-submit">Submit</button>
                 </div>
             </div>
             <button data-modal-target="#modal" id="add-book">Add Book</button>
