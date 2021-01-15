@@ -1,26 +1,30 @@
-function Book(title, author, page_count, have_read, book_index){
-    this.title = title;
-    this.author = author;
-    this.page_count = page_count;
-    this.have_read = have_read;
-    this.book_index = book_index;
-}
-Book.prototype.info = function() {
-    read_result = this.have_read ? "Have read this book." : "Have not read this book.";
-    return `${this.title}, by ${this.author}, ${this.page_count} pages. ${read_result}`;
+class Book {
+    constructor(title, author, page_count, have_read, book_index){
+        this.title = title;
+        this.author = author;
+        this.page_count = page_count;
+        this.have_read = have_read;
+        this.book_index = book_index;    
+    }
+    info(){
+        read_result = this.have_read ? "Have read this book." : "Have not read this book.";
+        return `${this.title}, by ${this.author}, ${this.page_count} pages. ${read_result}`;    
+    }
 }
 
-function Library(book_arr, book_index){
-    this.book_arr = book_arr;
-    this.book_index = book_index;
-}
-Library.prototype.bookReadout = function(){
-    this.book_arr.forEach(book => {
-        console.log(book.info());
-    });
-}
-Library.prototype.addBook = function(book){
-    this.book_arr.push(book);
+class Library {
+    constructor(book_arr, book_index){
+        this.book_arr = book_arr;
+        this.book_index = book_index;
+    }
+    bookReadout(){
+        this.book_arr.forEach(book => {
+            console.log(book.info());
+        });
+    }
+    addBook(book){
+        this.book_arr.push(book);
+    }
 }
 function loadDefaultBooks(){
     let b = new Book("Harry Potter", "J.K Rowling", 400, true, 0);
@@ -35,14 +39,13 @@ function loadDefaultBooks(){
                          Author: ${book.author}
                          Length: ${book.page_count}`;
         d.classList.add("book");
-        d.id = "book" + book.book_index;
+        d.value = main_lib.book_index;
+        d.id = "book" + main_lib.book_index;
         main_lib.book_index++;
         d.addEventListener('contextmenu', function(ev) {
             ev.preventDefault();
             document.getElementById("bookcase").removeChild(d);
-            let idx = book.book_index;
-            main_lib.book_arr.splice(idx, 1);
-            main_lib.book_index--;
+            main_lib.book_arr.splice(d.value, 1);
             console.log(main_lib.book_arr);
             return false;
         });
@@ -85,14 +88,13 @@ function newBook(){
     Author: ${author}
     Length: ${length}`;
     d.classList.add("book");
+    d.value = main_lib.book_index;
     d.id = "book" + main_lib.book_index;
     main_lib.book_index++;
     d.addEventListener('contextmenu', function(ev) {
         ev.preventDefault();
         document.getElementById("bookcase").removeChild(d);
-        let idx = book.book_index;
-        main_lib.book_arr.splice(idx, 1);
-        main_lib.book_index--;
+        main_lib.book_arr.splice(d.value, 1);
         console.log(main_lib.book_arr);
         return false;
     });
@@ -144,4 +146,9 @@ overlay.addEventListener('click', () => {
         closeModal(modal);
     });
 });
+let fact = n => {
+    let log = () => { return (n + "!"); }
+    let p = () => { console.log(log()); }
+    return {p};
+};
 loadDefaultBooks();
